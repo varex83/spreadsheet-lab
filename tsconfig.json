@@ -1,0 +1,27 @@
+/* Visit https://aka.ms/tsconfig.json to read more about this file */
+{
+  "include": [
+    "src/**/*",
+  ],
+  "exclude": ["node_modules"],
+
+  "compilerOptions": {
+    "module": "System",
+    "lib": ["es2015", "dom"],
+    "checkJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "declaration": true,
+    "declarationMap": true,
+    "strict": true,
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "target": "ES5",
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "outDir": "public/dist",
+    "rootDir": "src"
+  }
+}
