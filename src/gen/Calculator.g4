@@ -17,6 +17,7 @@ expression : WS expression #WsExpr
         | expression operatorToken=EQ expression #EqExpr
         | expression operatorToken=LESS expression #LessExpr
         | expression operatorToken=GREATER expression #GreaterExpr
+        | operatorToken=INC ( expression ) #Inc2Expr
         | BOOL #BooleanExpr
         | NUMBER #NumberExpr
         | IDENTIFIER #IdentifierExpr;
@@ -32,6 +33,7 @@ COMMA : ',';
 LPAREN : '(';
 RPAREN : ')';
 INC : '++';
+INC2 : 'inc'
 DEC : '--';
 MMAX : 'mmax';
 MMIN : 'mmin';
@@ -39,6 +41,6 @@ EQ : '==';
 LESS : '<';
 GREATER : '>';
 NOT : '!';
-AND : '&&';
-OR : '||';
+AND : '&&' | 'and';
+OR : '||' | 'or';
 WS : [ \t\r\n]+ -> channel(HIDDEN);

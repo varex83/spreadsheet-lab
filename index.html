@@ -3,152 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-<!--     Bootstrap -->
+    <!--     Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-<!--     Fonts -->
+    <!--     Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@1,700&display=swap" rel="stylesheet">
-<!--    Local styles-->
+    <!--    Local styles-->
     <link href="public/css/main.css" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand bg-dark">
-        <div class="contrainer-fluid">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <a class="navbar-brand" id="logo">
-                    Spreadsheet
-                </a>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" id="new">New</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" id="save">Save</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" id="load">Load</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" id="info">Info</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+<nav class="navbar navbar-expand bg-dark">
+    <div class="contrainer-fluid">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <a class="navbar-brand" id="logo">
+                Spreadsheet
+            </a>
+            <li class="nav-item">
+                <a class="nav-link" href="#" id="new">New</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" id="save">Save</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" id="load">Load</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" id="info">Info</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
-    <section id="table">
-        <div class="spreadsheet-wrapper row container">
-            <div class="input-group select-input-file" id="select-input-file">
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="inputGroupFile">
-                </div>
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="button" id="load-btn">Load</button>
-                </div>
+<section id="table">
+    <div class="spreadsheet-wrapper row container">
+        <div class="input-group select-input-file" id="select-input-file">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="inputGroupFile">
             </div>
-
-            <div class="spreadsheet" id="main-spreadsheet">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button" id="load-btn">Load</button>
             </div>
         </div>
-    </section>
 
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+        <div class="spreadsheet" id="main-spreadsheet">
+        </div>
+    </div>
+</section>
 
-    <script src="https://unpkg.com/systemjs@6.11.0/dist/s.js"></script>
-    <script src="https://unpkg.com/systemjs@6.11.0/dist/extras/named-register.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 
-    <script src="public/dist/index.js"></script>
+<script src="https://unpkg.com/systemjs@6.11.0/dist/s.js"></script>
+<script src="https://unpkg.com/systemjs@6.11.0/dist/extras/named-register.js"></script>
 
-    <script type="module">
-        System.import('index');
+<script src="./public/dist/index.js" type="text/javascript"></script>
 
-        let table = new Spreadsheet(6, 6)
+<script defer>
+    let table = new MyLib.Spreadsheet(6, 6)
 
-        table.generateEmptySpreadSheet()
+    table.generateEmptySpreadSheet()
 
-        function eventHandlers() {
-            $('.spreadsheet-cell')
-                .focusin((e) => {
-                    table.setCurrentFocus(e.target.id)
-                })
-                .focusout((e) => {
-                    table.focusOut(e.target.id)
-                })
-
-            $('#apply-formula-view')
-                .click((e) => {
-                    table.applyFormulaInput()
-                })
-        }
-
-        eventHandlers()
-
-        $('#save')
-            .click(() => {
-                const fileName = prompt('Input FileName')
-
-                if (fileName == 'null') {
-                    alert('Filename cannot be empty')
-                    return
-                }
-
-                var a = document.createElement("a");
-                a.href = window.URL.createObjectURL(new Blob([table.save()], {type: "text/plain"}));
-                a.download = fileName;
-                a.click();
-
-                eventHandlers()
+    function eventHandlers() {
+        $('.spreadsheet-cell')
+            .focusin((e) => {
+                table.setCurrentFocus(e.target.id)
+            })
+            .focusout((e) => {
+                table.focusOut(e.target.id)
             })
 
-        $('#new')
-            .click(() => {
-                const width = Number(prompt('Input width'))
-                const height = Number(prompt('Input height'))
-
-                if (width * height == 0) {
-                    alert('Width or height cannot be 0')
-                    return;
-                }
-
-                table.new(width, height)
-
-                eventHandlers()
+        $('#apply-formula-view')
+            .click((e) => {
+                table.applyFormulaInput()
             })
+    }
 
-        $('#load')
-            .click(() => {
-                $('#select-input-file').css('display', 'flex')
-            })
+    eventHandlers()
 
-        $('#load-btn')
-            .click(() => {
-                const res = $('#inputGroupFile').prop('files')[0];
+    $('#save')
+        .click(() => {
+            const fileName = prompt('Input FileName')
 
-                console.log(res.textContent)
-
-                table.load(JSON.parse(res.textContent))
-
-                $('#select-input-file').css('display', 'none')
-
-                eventHandlers()
-            })
-
-        $('#inputGroupFile').change(async () => {
-            const res = $('#inputGroupFile').prop('files')[0];
-
-            let fileReader = new FileReader()
-
-            fileReader.onload = function () {
-                res.textContent = fileReader.result;
+            if (fileName == 'null') {
+                alert('Filename cannot be empty')
+                return
             }
 
-            await fileReader.readAsText(res)
+            var a = document.createElement("a");
+            a.href = window.URL.createObjectURL(new Blob([table.save()], {type: "text/plain"}));
+            a.download = fileName;
+            a.click();
+
+            eventHandlers()
         })
 
-        $('#info')
-            .click(() => {
-                alert('Here will be info')
-            })
-    </script>
+    $('#new')
+        .click(() => {
+            const width = Number(prompt('Input width'))
+            const height = Number(prompt('Input height'))
+
+            if (width * height == 0) {
+                alert('Width or height cannot be 0')
+                return;
+            }
+
+            table.new(width, height)
+
+            eventHandlers()
+        })
+
+    $('#load')
+        .click(() => {
+            $('#select-input-file').css('display', 'flex')
+        })
+
+    $('#load-btn')
+        .click(() => {
+            const res = $('#inputGroupFile').prop('files')[0];
+
+            console.log(res.textContent)
+
+            table.load(JSON.parse(res.textContent))
+
+            $('#select-input-file').css('display', 'none')
+
+            eventHandlers()
+        })
+
+    $('#inputGroupFile').change(async () => {
+        const res = $('#inputGroupFile').prop('files')[0];
+
+        let fileReader = new FileReader()
+
+        fileReader.onload = function () {
+            res.textContent = fileReader.result;
+        }
+
+        await fileReader.readAsText(res)
+    })
+
+    $('#info')
+        .click(() => {
+            alert('Here will be info')
+        })
+</script>
 </body>
 </html>

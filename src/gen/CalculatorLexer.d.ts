@@ -1,0 +1,41 @@
+import { ATN } from "antlr4ts/atn/ATN";
+import { CharStream } from "antlr4ts/CharStream";
+import { Lexer } from "antlr4ts/Lexer";
+import { Vocabulary } from "antlr4ts/Vocabulary";
+export declare class CalculatorLexer extends Lexer {
+    static readonly NUMBER = 1;
+    static readonly IDENTIFIER = 2;
+    static readonly INT = 3;
+    static readonly BOOL = 4;
+    static readonly COMMA = 5;
+    static readonly LPAREN = 6;
+    static readonly RPAREN = 7;
+    static readonly INC = 8;
+    static readonly DEC = 9;
+    static readonly MMAX = 10;
+    static readonly MMIN = 11;
+    static readonly EQ = 12;
+    static readonly LESS = 13;
+    static readonly GREATER = 14;
+    static readonly NOT = 15;
+    static readonly AND = 16;
+    static readonly OR = 17;
+    static readonly WS = 18;
+    static readonly channelNames: string[];
+    static readonly modeNames: string[];
+    static readonly ruleNames: string[];
+    private static readonly _LITERAL_NAMES;
+    private static readonly _SYMBOLIC_NAMES;
+    static readonly VOCABULARY: Vocabulary;
+    get vocabulary(): Vocabulary;
+    constructor(input: CharStream);
+    get grammarFileName(): string;
+    get ruleNames(): string[];
+    get serializedATN(): string;
+    get channelNames(): string[];
+    get modeNames(): string[];
+    static readonly _serializedATN: string;
+    static __ATN: ATN;
+    static get _ATN(): ATN;
+}
+//# sourceMappingURL=CalculatorLexer.d.ts.map

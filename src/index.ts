@@ -156,6 +156,8 @@ export class Spreadsheet {
             this.currentFocus,
             this.__getInputFormulaValue(this.currentFocus)
         )
+
+        this.applyCells()
     }
 
     public focusOut() {
@@ -163,6 +165,8 @@ export class Spreadsheet {
         const value = document.getElementById(this.currentFocus)!.value
 
         this.setCellFormula(this.currentFocus, value)
+
+        // this.applyCells()
 
         this.__setCellOutputValue(this.currentFocus, this.getCell(this.currentFocus).output)
     }
