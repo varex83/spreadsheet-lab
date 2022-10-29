@@ -11,8 +11,10 @@ expression : WS expression #WsExpr
         | operatorToken=MMIN LPAREN expression (COMMA WS? expression)+ RPAREN #MinExpr
         | operatorToken=NOT expression #NotExpr
         | expression operatorToken=INC #IncExpr
+        | operatorToken=INC2 LPAREN expression RPAREN #IncExpr
         | expression operatorToken=DEC #DecExpr
-        | expression operatorToken=AND expression #AndExpr 
+        | operatorToken=DEC2 LPAREN expression RPAREN #DecExpr
+        | expression operatorToken=AND expression #AndExpr
         | expression operatorToken=OR expression #OrExpr
         | expression operatorToken=EQ expression #EqExpr
         | expression operatorToken=LESS expression #LessExpr
@@ -33,8 +35,9 @@ COMMA : ',';
 LPAREN : '(';
 RPAREN : ')';
 INC : '++';
-INC2 : 'inc'
+INC2 : 'inc';
 DEC : '--';
+DEC2 : 'dec';
 MMAX : 'mmax';
 MMIN : 'mmin';
 EQ : '==';

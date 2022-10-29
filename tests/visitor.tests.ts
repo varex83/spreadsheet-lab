@@ -355,6 +355,17 @@ describe('Visitor', () => {
             // Then
             expect(result).to.be.deep.eq(Result.from(2))
         })
+
+        it('should inc as inc(1)', () => {
+            // Given
+            const visitor = new CalculatorVisitorImpl({})
+
+            // When
+            const result = visitor.getFormulaValue('inc(1)')
+
+            // Then
+            expect(result).to.be.deep.eq(Result.from(2))
+        })
     })
 
     describe('dec', () => {
@@ -386,6 +397,17 @@ describe('Visitor', () => {
 
             // When
             const result = visitor.getFormulaValue('true--')
+
+            // Then
+            expect(result).to.be.deep.eq(Result.from(0))
+        })
+
+        it('should dec as dec(1)', () => {
+            // Given
+            const visitor = new CalculatorVisitorImpl({})
+
+            // When
+            const result = visitor.getFormulaValue('dec(1)')
 
             // Then
             expect(result).to.be.deep.eq(Result.from(0))

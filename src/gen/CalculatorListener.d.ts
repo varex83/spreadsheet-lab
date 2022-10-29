@@ -11,6 +11,7 @@ import { OrExprContext } from "./CalculatorParser";
 import { EqExprContext } from "./CalculatorParser";
 import { LessExprContext } from "./CalculatorParser";
 import { GreaterExprContext } from "./CalculatorParser";
+import { Inc2ExprContext } from "./CalculatorParser";
 import { BooleanExprContext } from "./CalculatorParser";
 import { NumberExprContext } from "./CalculatorParser";
 import { IdentifierExprContext } from "./CalculatorParser";
@@ -41,6 +42,8 @@ export interface CalculatorListener extends ParseTreeListener {
     exitLessExpr?: (ctx: LessExprContext) => void;
     enterGreaterExpr?: (ctx: GreaterExprContext) => void;
     exitGreaterExpr?: (ctx: GreaterExprContext) => void;
+    enterInc2Expr?: (ctx: Inc2ExprContext) => void;
+    exitInc2Expr?: (ctx: Inc2ExprContext) => void;
     enterBooleanExpr?: (ctx: BooleanExprContext) => void;
     exitBooleanExpr?: (ctx: BooleanExprContext) => void;
     enterNumberExpr?: (ctx: NumberExprContext) => void;

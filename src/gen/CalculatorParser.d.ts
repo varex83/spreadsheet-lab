@@ -18,16 +18,18 @@ export declare class CalculatorParser extends Parser {
     static readonly LPAREN = 6;
     static readonly RPAREN = 7;
     static readonly INC = 8;
-    static readonly DEC = 9;
-    static readonly MMAX = 10;
-    static readonly MMIN = 11;
-    static readonly EQ = 12;
-    static readonly LESS = 13;
-    static readonly GREATER = 14;
-    static readonly NOT = 15;
-    static readonly AND = 16;
-    static readonly OR = 17;
-    static readonly WS = 18;
+    static readonly INC2 = 9;
+    static readonly DEC = 10;
+    static readonly DEC2 = 11;
+    static readonly MMAX = 12;
+    static readonly MMIN = 13;
+    static readonly EQ = 14;
+    static readonly LESS = 15;
+    static readonly GREATER = 16;
+    static readonly NOT = 17;
+    static readonly AND = 18;
+    static readonly OR = 19;
+    static readonly WS = 20;
     static readonly RULE_compileUnit = 0;
     static readonly RULE_expression = 1;
     static readonly ruleNames: string[];
@@ -124,7 +126,10 @@ export declare class NotExprContext extends ExpressionContext {
 export declare class IncExprContext extends ExpressionContext {
     _operatorToken: Token;
     expression(): ExpressionContext;
-    INC(): TerminalNode;
+    INC(): TerminalNode | undefined;
+    LPAREN(): TerminalNode | undefined;
+    RPAREN(): TerminalNode | undefined;
+    INC2(): TerminalNode | undefined;
     constructor(ctx: ExpressionContext);
     enterRule(listener: CalculatorListener): void;
     exitRule(listener: CalculatorListener): void;
@@ -133,7 +138,10 @@ export declare class IncExprContext extends ExpressionContext {
 export declare class DecExprContext extends ExpressionContext {
     _operatorToken: Token;
     expression(): ExpressionContext;
-    DEC(): TerminalNode;
+    DEC(): TerminalNode | undefined;
+    LPAREN(): TerminalNode | undefined;
+    RPAREN(): TerminalNode | undefined;
+    DEC2(): TerminalNode | undefined;
     constructor(ctx: ExpressionContext);
     enterRule(listener: CalculatorListener): void;
     exitRule(listener: CalculatorListener): void;
@@ -184,6 +192,15 @@ export declare class GreaterExprContext extends ExpressionContext {
     expression(): ExpressionContext[];
     expression(i: number): ExpressionContext;
     GREATER(): TerminalNode;
+    constructor(ctx: ExpressionContext);
+    enterRule(listener: CalculatorListener): void;
+    exitRule(listener: CalculatorListener): void;
+    accept<Result>(visitor: CalculatorVisitor<Result>): Result;
+}
+export declare class Inc2ExprContext extends ExpressionContext {
+    _operatorToken: Token;
+    INC(): TerminalNode;
+    expression(): ExpressionContext | undefined;
     constructor(ctx: ExpressionContext);
     enterRule(listener: CalculatorListener): void;
     exitRule(listener: CalculatorListener): void;

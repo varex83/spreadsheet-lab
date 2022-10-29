@@ -11,6 +11,7 @@ import { OrExprContext } from "./CalculatorParser";
 import { EqExprContext } from "./CalculatorParser";
 import { LessExprContext } from "./CalculatorParser";
 import { GreaterExprContext } from "./CalculatorParser";
+import { Inc2ExprContext } from "./CalculatorParser";
 import { BooleanExprContext } from "./CalculatorParser";
 import { NumberExprContext } from "./CalculatorParser";
 import { IdentifierExprContext } from "./CalculatorParser";
@@ -29,6 +30,7 @@ export interface CalculatorVisitor<Result> extends ParseTreeVisitor<Result> {
     visitEqExpr?: (ctx: EqExprContext) => Result;
     visitLessExpr?: (ctx: LessExprContext) => Result;
     visitGreaterExpr?: (ctx: GreaterExprContext) => Result;
+    visitInc2Expr?: (ctx: Inc2ExprContext) => Result;
     visitBooleanExpr?: (ctx: BooleanExprContext) => Result;
     visitNumberExpr?: (ctx: NumberExprContext) => Result;
     visitIdentifierExpr?: (ctx: IdentifierExprContext) => Result;
