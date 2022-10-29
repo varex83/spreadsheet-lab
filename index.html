@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Spreadsheet</title>
     <!--     Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <!--     Fonts -->
@@ -20,16 +20,19 @@
                 Spreadsheet
             </a>
             <li class="nav-item">
-                <a class="nav-link" href="#" id="new">New</a>
+                <a class="nav-link" href="#" id="new">Нова таблиця</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" id="save">Save</a>
+                <a class="nav-link" href="#" id="save">Експортувати таблицю</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" id="load">Load</a>
+                <a class="nav-link" href="#" id="load">Імпортувати таблицю</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" id="info">Info</a>
+                <a class="nav-link" href="#" id="info">Інформація</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="public/pages/user-guide.html" id="help">Інструкція користувача</a>
             </li>
         </ul>
     </div>
@@ -83,10 +86,10 @@
 
     $('#save')
         .click(() => {
-            const fileName = prompt('Input FileName')
+            const fileName = prompt('Введіть ім\'я файлу')
 
             if (fileName == 'null') {
-                alert('Filename cannot be empty')
+                alert('Ім\'я файлу не може бути пустим')
                 return
             }
 
@@ -100,11 +103,11 @@
 
     $('#new')
         .click(() => {
-            const width = Number(prompt('Input width'))
-            const height = Number(prompt('Input height'))
+            const width = Number(prompt('Введіть ширину таблиці'))
+            const height = Number(prompt('Введіть висоту таблиці'))
 
-            if (width * height == 0) {
-                alert('Width or height cannot be 0')
+            if (width * height === 0) {
+                alert('Ширина і висота таблиці не можуть бути 0')
                 return;
             }
 
@@ -145,7 +148,7 @@
 
     $('#info')
         .click(() => {
-            alert('Here will be info')
+            alert('Виконав: Огородній Богдан Ігорович\nГрупа: К-26\nВаріант: 76')
         })
 </script>
 </body>
