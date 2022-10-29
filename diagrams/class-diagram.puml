@@ -1,0 +1,381 @@
+@startuml
+interface CalculatorListener extends ParseTreeListener {
+    +enterWsExpr?: ((ctx: WsExprContext) => void) | undefined
+    +exitWsExpr?: ((ctx: WsExprContext) => void) | undefined
+    +enterParenthesizedExpr?: ((ctx: ParenthesizedExprContext) => void) | undefined
+    +exitParenthesizedExpr?: ((ctx: ParenthesizedExprContext) => void) | undefined
+    +enterMaxExpr?: ((ctx: MaxExprContext) => void) | undefined
+    +exitMaxExpr?: ((ctx: MaxExprContext) => void) | undefined
+    +enterMinExpr?: ((ctx: MinExprContext) => void) | undefined
+    +exitMinExpr?: ((ctx: MinExprContext) => void) | undefined
+    +enterNotExpr?: ((ctx: NotExprContext) => void) | undefined
+    +exitNotExpr?: ((ctx: NotExprContext) => void) | undefined
+    +enterIncExpr?: ((ctx: IncExprContext) => void) | undefined
+    +exitIncExpr?: ((ctx: IncExprContext) => void) | undefined
+    +enterDecExpr?: ((ctx: DecExprContext) => void) | undefined
+    +exitDecExpr?: ((ctx: DecExprContext) => void) | undefined
+    +enterAndExpr?: ((ctx: AndExprContext) => void) | undefined
+    +exitAndExpr?: ((ctx: AndExprContext) => void) | undefined
+    +enterOrExpr?: ((ctx: OrExprContext) => void) | undefined
+    +exitOrExpr?: ((ctx: OrExprContext) => void) | undefined
+    +enterEqExpr?: ((ctx: EqExprContext) => void) | undefined
+    +exitEqExpr?: ((ctx: EqExprContext) => void) | undefined
+    +enterLessExpr?: ((ctx: LessExprContext) => void) | undefined
+    +exitLessExpr?: ((ctx: LessExprContext) => void) | undefined
+    +enterGreaterExpr?: ((ctx: GreaterExprContext) => void) | undefined
+    +exitGreaterExpr?: ((ctx: GreaterExprContext) => void) | undefined
+    +enterInc2Expr?: ((ctx: Inc2ExprContext) => void) | undefined
+    +exitInc2Expr?: ((ctx: Inc2ExprContext) => void) | undefined
+    +enterBooleanExpr?: ((ctx: BooleanExprContext) => void) | undefined
+    +exitBooleanExpr?: ((ctx: BooleanExprContext) => void) | undefined
+    +enterNumberExpr?: ((ctx: NumberExprContext) => void) | undefined
+    +exitNumberExpr?: ((ctx: NumberExprContext) => void) | undefined
+    +enterIdentifierExpr?: ((ctx: IdentifierExprContext) => void) | undefined
+    +exitIdentifierExpr?: ((ctx: IdentifierExprContext) => void) | undefined
+    +enterCompileUnit?: ((ctx: CompileUnitContext) => void) | undefined
+    +exitCompileUnit?: ((ctx: CompileUnitContext) => void) | undefined
+    +enterExpression?: ((ctx: ExpressionContext) => void) | undefined
+    +exitExpression?: ((ctx: ExpressionContext) => void) | undefined
+}
+class CalculatorParser extends Parser {
+    +vocabulary: Vocabulary
+    +grammarFileName: string
+    +ruleNames: string[]
+    +serializedATN: string
+    #createFailedPredicateException(predicate?: string | undefined, message?: string | undefined): FailedPredicateException
+    +compileUnit(): CompileUnitContext
+    +expression(): ExpressionContext
+    +expression(_p: number): ExpressionContext
+    +expression(_p?: number | undefined): ExpressionContext
+    +sempred(_localctx: RuleContext, ruleIndex: number, predIndex: number): boolean
+    -expression_sempred(_localctx: ExpressionContext, predIndex: number): boolean
+    +{static} NUMBER: 1
+    +{static} IDENTIFIER: 2
+    +{static} INT: 3
+    +{static} BOOL: 4
+    +{static} COMMA: 5
+    +{static} LPAREN: 6
+    +{static} RPAREN: 7
+    +{static} INC: 8
+    +{static} INC2: 9
+    +{static} DEC: 10
+    +{static} DEC2: 11
+    +{static} MMAX: 12
+    +{static} MMIN: 13
+    +{static} EQ: 14
+    +{static} LESS: 15
+    +{static} GREATER: 16
+    +{static} NOT: 17
+    +{static} AND: 18
+    +{static} OR: 19
+    +{static} WS: 20
+    +{static} RULE_compileUnit: 0
+    +{static} RULE_expression: 1
+    +{static} ruleNames: string[]
+    -{static} _LITERAL_NAMES: (string | undefined)[]
+    -{static} _SYMBOLIC_NAMES: (string | undefined)[]
+    +{static} VOCABULARY: Vocabulary
+    +{static} _serializedATN: string
+    +{static} __ATN: ATN
+    +{static} _ATN: ATN
+}
+class CompileUnitContext extends ParserRuleContext {
+    +expression(): ExpressionContext
+    +EOF(): TerminalNode
+    +ruleIndex: number
+    +enterRule(listener: CalculatorListener): void
+    +exitRule(listener: CalculatorListener): void
+    +accept(visitor: CalculatorVisitor<Result>): Result
+}
+class ExpressionContext extends ParserRuleContext {
+    +ruleIndex: number
+    +copyFrom(ctx: ExpressionContext): void
+}
+class WsExprContext extends ExpressionContext {
+    +WS(): TerminalNode
+    +expression(): ExpressionContext
+    +enterRule(listener: CalculatorListener): void
+    +exitRule(listener: CalculatorListener): void
+    +accept(visitor: CalculatorVisitor<Result>): Result
+}
+class ParenthesizedExprContext extends ExpressionContext {
+    +LPAREN(): TerminalNode
+    +expression(): ExpressionContext
+    +RPAREN(): TerminalNode
+    +enterRule(listener: CalculatorListener): void
+    +exitRule(listener: CalculatorListener): void
+    +accept(visitor: CalculatorVisitor<Result>): Result
+}
+class MaxExprContext extends ExpressionContext {
+    +_operatorToken: Token
+    +LPAREN(): TerminalNode
+    +expression(): ExpressionContext[]
+    +expression(i: number): ExpressionContext
+    +expression(i?: number | undefined): ExpressionContext | ExpressionContext[]
+    +RPAREN(): TerminalNode
+    +MMAX(): TerminalNode
+    +COMMA(): TerminalNode[]
+    +COMMA(i: number): TerminalNode
+    +COMMA(i?: number | undefined): TerminalNode | TerminalNode[]
+    +WS(): TerminalNode[]
+    +WS(i: number): TerminalNode
+    +WS(i?: number | undefined): TerminalNode | TerminalNode[]
+    +enterRule(listener: CalculatorListener): void
+    +exitRule(listener: CalculatorListener): void
+    +accept(visitor: CalculatorVisitor<Result>): Result
+}
+class MinExprContext extends ExpressionContext {
+    +_operatorToken: Token
+    +LPAREN(): TerminalNode
+    +expression(): ExpressionContext[]
+    +expression(i: number): ExpressionContext
+    +expression(i?: number | undefined): ExpressionContext | ExpressionContext[]
+    +RPAREN(): TerminalNode
+    +MMIN(): TerminalNode
+    +COMMA(): TerminalNode[]
+    +COMMA(i: number): TerminalNode
+    +COMMA(i?: number | undefined): TerminalNode | TerminalNode[]
+    +WS(): TerminalNode[]
+    +WS(i: number): TerminalNode
+    +WS(i?: number | undefined): TerminalNode | TerminalNode[]
+    +enterRule(listener: CalculatorListener): void
+    +exitRule(listener: CalculatorListener): void
+    +accept(visitor: CalculatorVisitor<Result>): Result
+}
+class NotExprContext extends ExpressionContext {
+    +_operatorToken: Token
+    +expression(): ExpressionContext
+    +NOT(): TerminalNode
+    +enterRule(listener: CalculatorListener): void
+    +exitRule(listener: CalculatorListener): void
+    +accept(visitor: CalculatorVisitor<Result>): Result
+}
+class IncExprContext extends ExpressionContext {
+    +_operatorToken: Token
+    +expression(): ExpressionContext
+    +INC(): TerminalNode | undefined
+    +LPAREN(): TerminalNode | undefined
+    +RPAREN(): TerminalNode | undefined
+    +INC2(): TerminalNode | undefined
+    +enterRule(listener: CalculatorListener): void
+    +exitRule(listener: CalculatorListener): void
+    +accept(visitor: CalculatorVisitor<Result>): Result
+}
+class DecExprContext extends ExpressionContext {
+    +_operatorToken: Token
+    +expression(): ExpressionContext
+    +DEC(): TerminalNode | undefined
+    +LPAREN(): TerminalNode | undefined
+    +RPAREN(): TerminalNode | undefined
+    +DEC2(): TerminalNode | undefined
+    +enterRule(listener: CalculatorListener): void
+    +exitRule(listener: CalculatorListener): void
+    +accept(visitor: CalculatorVisitor<Result>): Result
+}
+class AndExprContext extends ExpressionContext {
+    +_operatorToken: Token
+    +expression(): ExpressionContext[]
+    +expression(i: number): ExpressionContext
+    +expression(i?: number | undefined): ExpressionContext | ExpressionContext[]
+    +AND(): TerminalNode
+    +enterRule(listener: CalculatorListener): void
+    +exitRule(listener: CalculatorListener): void
+    +accept(visitor: CalculatorVisitor<Result>): Result
+}
+class OrExprContext extends ExpressionContext {
+    +_operatorToken: Token
+    +expression(): ExpressionContext[]
+    +expression(i: number): ExpressionContext
+    +expression(i?: number | undefined): ExpressionContext | ExpressionContext[]
+    +OR(): TerminalNode
+    +enterRule(listener: CalculatorListener): void
+    +exitRule(listener: CalculatorListener): void
+    +accept(visitor: CalculatorVisitor<Result>): Result
+}
+class EqExprContext extends ExpressionContext {
+    +_operatorToken: Token
+    +expression(): ExpressionContext[]
+    +expression(i: number): ExpressionContext
+    +expression(i?: number | undefined): ExpressionContext | ExpressionContext[]
+    +EQ(): TerminalNode
+    +enterRule(listener: CalculatorListener): void
+    +exitRule(listener: CalculatorListener): void
+    +accept(visitor: CalculatorVisitor<Result>): Result
+}
+class LessExprContext extends ExpressionContext {
+    +_operatorToken: Token
+    +expression(): ExpressionContext[]
+    +expression(i: number): ExpressionContext
+    +expression(i?: number | undefined): ExpressionContext | ExpressionContext[]
+    +LESS(): TerminalNode
+    +enterRule(listener: CalculatorListener): void
+    +exitRule(listener: CalculatorListener): void
+    +accept(visitor: CalculatorVisitor<Result>): Result
+}
+class GreaterExprContext extends ExpressionContext {
+    +_operatorToken: Token
+    +expression(): ExpressionContext[]
+    +expression(i: number): ExpressionContext
+    +expression(i?: number | undefined): ExpressionContext | ExpressionContext[]
+    +GREATER(): TerminalNode
+    +enterRule(listener: CalculatorListener): void
+    +exitRule(listener: CalculatorListener): void
+    +accept(visitor: CalculatorVisitor<Result>): Result
+}
+class Inc2ExprContext extends ExpressionContext {
+    +_operatorToken: Token
+    +INC(): TerminalNode
+    +expression(): ExpressionContext | undefined
+    +enterRule(listener: CalculatorListener): void
+    +exitRule(listener: CalculatorListener): void
+    +accept(visitor: CalculatorVisitor<Result>): Result
+}
+class BooleanExprContext extends ExpressionContext {
+    +BOOL(): TerminalNode
+    +enterRule(listener: CalculatorListener): void
+    +exitRule(listener: CalculatorListener): void
+    +accept(visitor: CalculatorVisitor<Result>): Result
+}
+class NumberExprContext extends ExpressionContext {
+    +NUMBER(): TerminalNode
+    +enterRule(listener: CalculatorListener): void
+    +exitRule(listener: CalculatorListener): void
+    +accept(visitor: CalculatorVisitor<Result>): Result
+}
+class IdentifierExprContext extends ExpressionContext {
+    +IDENTIFIER(): TerminalNode
+    +enterRule(listener: CalculatorListener): void
+    +exitRule(listener: CalculatorListener): void
+    +accept(visitor: CalculatorVisitor<Result>): Result
+}
+interface CalculatorVisitor<Result> extends ParseTreeVisitor {
+    +visitWsExpr?: ((ctx: WsExprContext) => Result) | undefined
+    +visitParenthesizedExpr?: ((ctx: ParenthesizedExprContext) => Result) | undefined
+    +visitMaxExpr?: ((ctx: MaxExprContext) => Result) | undefined
+    +visitMinExpr?: ((ctx: MinExprContext) => Result) | undefined
+    +visitNotExpr?: ((ctx: NotExprContext) => Result) | undefined
+    +visitIncExpr?: ((ctx: IncExprContext) => Result) | undefined
+    +visitDecExpr?: ((ctx: DecExprContext) => Result) | undefined
+    +visitAndExpr?: ((ctx: AndExprContext) => Result) | undefined
+    +visitOrExpr?: ((ctx: OrExprContext) => Result) | undefined
+    +visitEqExpr?: ((ctx: EqExprContext) => Result) | undefined
+    +visitLessExpr?: ((ctx: LessExprContext) => Result) | undefined
+    +visitGreaterExpr?: ((ctx: GreaterExprContext) => Result) | undefined
+    +visitInc2Expr?: ((ctx: Inc2ExprContext) => Result) | undefined
+    +visitBooleanExpr?: ((ctx: BooleanExprContext) => Result) | undefined
+    +visitNumberExpr?: ((ctx: NumberExprContext) => Result) | undefined
+    +visitIdentifierExpr?: ((ctx: IdentifierExprContext) => Result) | undefined
+    +visitCompileUnit?: ((ctx: CompileUnitContext) => Result) | undefined
+    +visitExpression?: ((ctx: ExpressionContext) => Result) | undefined
+}
+class Result {
+    +isBool: boolean
+    +isInt: boolean
+    +booleanValue: boolean
+    +intValue: number
+    +toString(): string
+    +and(b: Result): Result
+    +or(b: Result): Result
+    +xor(b: Result): Result
+    +not(): Result
+    +eq(b: Result): Result
+    +notEq(b: Result): Result
+    +greater(b: Result): Result
+    +less(b: Result): Result
+    +inc(): Result
+    +dec(): Result
+    +{static} from(value: number | boolean): Result
+    +{static} default(): Result
+}
+class CalculatorLexer extends Lexer {
+    +vocabulary: Vocabulary
+    +grammarFileName: string
+    +ruleNames: string[]
+    +serializedATN: string
+    +channelNames: string[]
+    +modeNames: string[]
+    +{static} NUMBER: 1
+    +{static} IDENTIFIER: 2
+    +{static} INT: 3
+    +{static} BOOL: 4
+    +{static} COMMA: 5
+    +{static} LPAREN: 6
+    +{static} RPAREN: 7
+    +{static} INC: 8
+    +{static} INC2: 9
+    +{static} DEC: 10
+    +{static} DEC2: 11
+    +{static} MMAX: 12
+    +{static} MMIN: 13
+    +{static} EQ: 14
+    +{static} LESS: 15
+    +{static} GREATER: 16
+    +{static} NOT: 17
+    +{static} AND: 18
+    +{static} OR: 19
+    +{static} WS: 20
+    +{static} channelNames: string[]
+    +{static} modeNames: string[]
+    +{static} ruleNames: string[]
+    -{static} _LITERAL_NAMES: (string | undefined)[]
+    -{static} _SYMBOLIC_NAMES: (string | undefined)[]
+    +{static} VOCABULARY: Vocabulary
+    +{static} _serializedATN: string
+    +{static} __ATN: ATN
+    +{static} _ATN: ATN
+}
+class Cell {
+    +formula: string
+    +output: string
+}
+class IndexCellColumns {
+    +index: string
+    +toString(): string
+}
+class Spreadsheet {
+    +cells: Record<string, Cell>
+    +currentFocus: string
+    +width: number
+    +height: number
+    +getCell(id: string): Cell
+    +setCell(id: string, value: Cell): void
+    +setCellOutput(id: string, value: string): void
+    +setCellFormula(id: string, value: string): void
+    +generateEmptySpreadSheet(): void
+    +applyCells(): void
+    +setCurrentFocus(id: string): void
+    +applyFormulaInput(): void
+    +focusOut(): void
+    +save(): string
+    +load(obj: any): void
+    +new(width: number, height: number): void
+    -__setCellOutputValue(id: string, value: string): void
+    -__setInputFormulaValue(value: string): void
+    -__getInputFormulaValue(value: string): any
+    -__compileCellFormula(formula: string): string
+    -__generateIndexes(): string
+}
+class default extends AbstractParseTreeVisitor implements CalculatorVisitor {
+    #table: Record<string, Cell>
+    +getFormulaValue(formula: string): Result
+    #defaultResult(): Result
+    +visitCompileUnit(ctx: CompileUnitContext): Result
+    +visitAndExpr(ctx: AndExprContext): Result
+    +visitBooleanExpr(ctx: BooleanExprContext): Result
+    +visitDecExpr(ctx: DecExprContext): Result
+    +visitEqExpr(ctx: EqExprContext): Result
+    +visitGreaterExpr(ctx: GreaterExprContext): Result
+    +visitIncExpr(ctx: IncExprContext): Result
+    +visitLessExpr(ctx: LessExprContext): Result
+    +visitMaxExpr(ctx: MaxExprContext): Result
+    +visitMinExpr(ctx: MinExprContext): Result
+    +visitNotExpr(ctx: NotExprContext): Result
+    +visitNumberExpr(ctx: NumberExprContext): Result
+    +visitOrExpr(ctx: OrExprContext): Result
+    +visitParenthesizedExpr(ctx: ParenthesizedExprContext): Result
+    +visitWsExpr(ctx: WsExprContext): Result
+    +visitIdentifierExpr(ctx: IdentifierExprContext): Result
+    #walkLeft(ctx: ExpressionContext): Result
+    #walkRight(ctx: ExpressionContext): Result
+}
+@enduml
